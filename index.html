@@ -3,9 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Special Surprise ❤️</title>
+<title>A Special Surprise</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
+
 body{
     margin:0;
     height:100vh;
@@ -13,41 +16,132 @@ body{
     justify-content:center;
     align-items:center;
     background:
-    linear-gradient(rgba(0,0,0,.5), rgba(0,0,0,.5)),
+    linear-gradient(rgba(0,0,0,.35), rgba(0,0,0,.35)),
     url("us.jpg");
     background-size:cover;
     background-position:center;
+    font-family:'Poppins',sans-serif;
     color:white;
 }
 
 .container{
-padding:40px;
-border-radius:25px;
-width:90%;
-max-width:700px;
-text-align:center;
+    background:rgba(0,0,0,0.15);
+    backdrop-filter:blur(2px);
+    -webkit-backdrop-filter:blur(2px);
+
+    padding:50px;
+    border-radius:25px;
+    width:90%;
+    max-width:750px;
+    text-align:center;
+
+    border:1px solid rgba(255,255,255,.15);
+    box-shadow:0 8px 25px rgba(0,0,0,.3);
 }
 
 h1{
-    color:#ff7aa2;
+    font-family:'Great Vibes',cursive;
+    font-size:4rem;
+    color:#ffd6e7;
+    margin:0 0 20px;
+
+    text-shadow:
+    0 0 10px rgba(255,182,193,.5),
+    2px 2px 15px rgba(0,0,0,.8);
+}
+
+.container p{
+    font-size:1.1rem;
+    line-height:1.9;
+    max-width:650px;
+    margin:0 auto 25px;
+    text-shadow:2px 2px 8px rgba(0,0,0,.9);
 }
 
 #countdown{
+    margin-top:25px;
     font-size:2rem;
-    margin-top:20px;
+    font-weight:600;
+    color:#fff;
+    text-shadow:
+    0 0 10px rgba(255,255,255,.5),
+    2px 2px 10px rgba(0,0,0,1);
 }
+
+#musicBtn{
+    margin-top:25px;
+    padding:12px 28px;
+    border:none;
+    border-radius:30px;
+    background:#ff7aa2;
+    color:white;
+    font-size:1rem;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#musicBtn:hover{
+    background:#ff5f91;
+    transform:scale(1.05);
+}
+
+@media(max-width:768px){
+
+    .container{
+        padding:30px;
+    }
+
+    h1{
+        font-size:2.8rem;
+    }
+
+    .container p{
+        font-size:1rem;
+    }
+
+    #countdown{
+        font-size:1.3rem;
+    }
+}
+
 </style>
 </head>
 <body>
 
+<audio id="bgMusic" loop>
+    <source src="tahanan.mp3" type="audio/mpeg">
+</audio>
+
 <div class="container">
-    <h1>❤️ A Special Surprise Awaits ❤️</h1>
-    <p>Come back on our anniversary.</p>
+
+    <h1>A Little Surprise For You</h1>
+
+    <p>
+        A year may not seem like a long time, but with you,
+        it has been filled with laughter, adventures, lessons,
+        and countless memories that I will always treasure.
+        This small gift was made from the heart, so please
+        come back on our anniversary to open it and relive
+        some of our most beautiful moments together.
+    </p>
+
     <div id="countdown"></div>
+
+    <button id="musicBtn">🎵 Play Our Song</button>
+
 </div>
 
 <script>
-const unlockDate = new Date("2027-01-07T00:00:00+08:00"); //
+
+const music = document.getElementById("bgMusic");
+const btn = document.getElementById("musicBtn");
+
+btn.addEventListener("click", () => {
+    music.play();
+    btn.innerHTML = "❤️ Now Playing";
+});
+
+const unlockDate = new Date("2027-01-07T00:00:00+08:00");
 
 function updateCountdown() {
 
@@ -55,21 +149,22 @@ function updateCountdown() {
     const diff = unlockDate - now;
 
     if(diff <= 0){
-        window.location.href = "home.html"; // totoong page mo
+        window.location.href = "home.html";
         return;
     }
 
-	const days = Math.floor(diff / (1000*60*60*24));
-	const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
-	const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
-	const seconds = Math.floor((diff % (1000*60)) / 1000);
+    const days = Math.floor(diff / (1000*60*60*24));
+    const hours = Math.floor((diff % (1000*60*60*24)) / (1000*60*60));
+    const minutes = Math.floor((diff % (1000*60*60)) / (1000*60));
+    const seconds = Math.floor((diff % (1000*60)) / 1000);
 
-	document.getElementById("countdown").innerHTML =
-			`${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds ❤️`;
+    document.getElementById("countdown").innerHTML =
+        `${days} Days ${hours} Hours ${minutes} Minutes ${seconds} Seconds`;
 }
 
 updateCountdown();
 setInterval(updateCountdown,1000);
+
 </script>
 
 </body>
